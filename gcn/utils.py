@@ -32,6 +32,7 @@ def load_data(dataset_str):
             else:
                 objects.append(pkl.load(f))
 
+    # 'x' are features 'y' are targets ('all' all records, 't' records from test)?
     x, y, tx, ty, allx, ally, graph = tuple(objects)
     test_idx_reorder = parse_index_file("data/ind.{}.test.index".format(dataset_str))
     test_idx_range = np.sort(test_idx_reorder)
