@@ -96,3 +96,10 @@ ENV/
 .ropeproject
 
 *.pickle
+
+# Datawand
+.datawand/
+datawand_info.json
+pipelines/luigi.cfg
+*.tmp
+*.info
