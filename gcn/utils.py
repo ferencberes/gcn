@@ -98,13 +98,16 @@ def sparse_to_tuple(sparse_mx):
     return sparse_mx
 
 
-def preprocess_features(features):
-    """Row-normalize feature matrix and convert to tuple representation"""
-    rowsum = np.array(features.sum(1))
-    r_inv = np.power(rowsum, -1).flatten()
-    r_inv[np.isinf(r_inv)] = 0.
-    r_mat_inv = sp.diags(r_inv)
-    features = r_mat_inv.dot(features)
+def preprocess_features(features, norm_type="row"):
+    """Row or Column normalize feature matrix and convert to tuple representation"""
+    if norm_type not in ["row","col",None]:
+        raise ValueError("Choose norm_type from 'row' or 'col'.")
+    if norm_type != None:
+        vsum = np.array(features.sum(1 if norm_type == "row" else 0))
+        r_inv = np.power(vsum, -1).flatten()
+        r_inv[np.isinf(r_inv)] = 0.
+        r_mat_inv = sp.diags(r_inv)
+        features = r_mat_inv.dot(features) if norm_type == "row" else features.dot(r_mat_inv)
     return sparse_to_tuple(features)
 
 
