@@ -2,10 +2,26 @@
    "config_path": "pipelines/GcnProject.json",
    "default_config": {
       "cut_ratio": 0.5,
+      "cut_ratio_vals": [
+         0.5,
+         0.7
+      ],
       "experiment_dir": "/home/fberes/sztaki/git/gcn/results/",
       "input_prefix": "/home/fberes/FBDATA/DATA/temporalNodeRanking/",
       "time_frame": 60,
-      "top_k": 5
+      "time_frame_vals": [
+         60,
+         100,
+         300
+      ],
+      "top_k": 5,
+      "top_k_vals": [
+         2,
+         3,
+         4,
+         5,
+         10
+      ]
    },
    "description": "Pipeline for experimenting with Graph Convolutional Networks (GCN). ",
    "id": "0",
@@ -37,7 +53,29 @@
          "path": "pipelines/GcnParams.ipynb",
          "pipeline_status": "off",
          "type": "Parameters"
+      },
+      {
+         "dependencies": [
+            "GcnNotebook"
+         ],
+         "is_clone": "no",
+         "kernel_type": "py3-env",
+         "name": "GcnResultCollector",
+         "path": "ipython/GcnResultCollector.ipynb",
+         "pipeline_status": "off",
+         "type": "Collector"
       }
    ],
-   "reports": []
+   "reports": [
+      {
+         "date": "2017-04-23",
+         "id": "15o_preproc_params_2017-04-23",
+         "kernel_status": "disabled",
+         "name": "15o preproc params",
+         "note": "I generated input for GCN from 15o. I used different parameters which influence GCN performance significantly. Especially, the number of most frequently tweeted entities (top_k).",
+         "save_for_remote": "disabled",
+         "type": "remote",
+         "user": "fberes"
+      }
+   ]
 }
