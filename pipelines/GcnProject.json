@@ -1,42 +1,43 @@
 {
-   "config_path": "pipelines/GcnProject.json", 
+   "config_path": "pipelines/GcnProject.json",
    "default_config": {
-      "cut_ratio": 0.5, 
-      "experiment_dir": "/mnt/idms/fberes/network/gcn_project/", 
-      "time_frame": 60, 
+      "cut_ratio": 0.5,
+      "experiment_dir": "/home/fberes/sztaki/git/gcn/results/",
+      "input_prefix": "/home/fberes/FBDATA/DATA/temporalNodeRanking/",
+      "time_frame": 60,
       "top_k": 5
-   }, 
-   "description": "Pipeline for experimenting with Graph Convolutional Networks (GCN). ", 
-   "id": "0", 
-   "name": "GcnProject", 
+   },
+   "description": "Pipeline for experimenting with Graph Convolutional Networks (GCN). ",
+   "id": "0",
+   "name": "GcnProject",
    "notebooks": [
       {
          "dependencies": [
             "GraphPreprocessor"
-         ], 
-         "is_clone": "no", 
-         "kernel_type": "py3-env", 
-         "name": "GcnNotebook", 
-         "path": "ipython/GcnNotebook.ipynb", 
-         "pipeline_status": "on", 
+         ],
+         "is_clone": "no",
+         "kernel_type": "py3-env",
+         "name": "GcnNotebook",
+         "path": "ipython/GcnNotebook.ipynb",
+         "pipeline_status": "on",
          "type": "Modeling"
-      }, 
+      },
       {
-         "is_clone": "no", 
-         "kernel_type": "py3-env", 
-         "name": "GraphPreprocessor", 
-         "path": "ipython/GraphPreprocessor.ipynb", 
-         "pipeline_status": "on", 
+         "is_clone": "no",
+         "kernel_type": "py3-env",
+         "name": "GraphPreprocessor",
+         "path": "ipython/GraphPreprocessor.ipynb",
+         "pipeline_status": "on",
          "type": "Preprocessor"
-      }, 
+      },
       {
-         "is_clone": "no", 
-         "kernel_type": "py3-env", 
-         "name": "GcnParams", 
-         "path": "pipelines/GcnParams.ipynb", 
-         "pipeline_status": "off", 
+         "is_clone": "no",
+         "kernel_type": "py3-env",
+         "name": "GcnParams",
+         "path": "pipelines/GcnParams.ipynb",
+         "pipeline_status": "off",
          "type": "Parameters"
       }
-   ], 
+   ],
    "reports": []
 }
