@@ -6,8 +6,11 @@
          0.5, 
          0.7
       ], 
+      "dataset_id": "15o", 
       "experiment_dir": "/mnt/idms/fberes/network/gcn_project/", 
       "input_prefix": "/mnt/idms/temporalNodeRanking/data/filtered_timeline_data/tsv", 
+      "label_type": "blended", 
+      "split_type": "random", 
       "time_frame": 60, 
       "time_frame_vals": [
          60, 
@@ -21,7 +24,9 @@
          4, 
          5, 
          10
-      ]
+      ], 
+      "topic_support": 50, 
+      "train_ratio": 0.6
    }, 
    "description": "Pipeline for experimenting with Graph Convolutional Networks (GCN). ", 
    "id": "0", 
