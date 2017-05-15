@@ -34,6 +34,7 @@ def load_data(dataset_str,input_prefix="data"):
 
     # 'x' are features 'y' are targets ('all' all records, 't' records from test)?
     # not really: in 'cora' y is the smallest then comes ty and ally
+    # CONCLUSION: ty is test, allx is train, y is a short sample? or the labeled ones???
     x, y, tx, ty, allx, ally, graph = tuple(objects)
     
     #print(y.shape)
@@ -61,6 +62,8 @@ def load_data(dataset_str,input_prefix="data"):
     labels = np.vstack((ally, ty))
     labels[test_idx_reorder, :] = labels[test_idx_range, :]
 
+    # CONCLUSION: x,y is is first few records that are truely labeled in the semi-classification, the next 500 records are used for validation! 
+    
     idx_test = test_idx_range.tolist()
     idx_train = range(len(y))
     idx_val = range(len(y), len(y)+500)
