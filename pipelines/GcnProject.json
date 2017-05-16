@@ -2,15 +2,11 @@
    "config_path": "pipelines/GcnProject.json", 
    "default_config": {
       "cut_ratio": 0.5, 
-      "cut_ratio_vals": [
-         0.5, 
-         0.7
-      ], 
       "dataset_id": "15o", 
       "experiment_dir": "/mnt/idms/fberes/network/gcn_project/", 
       "input_prefix": "/mnt/idms/temporalNodeRanking/data/filtered_timeline_data/tsv", 
-      "label_type": "blended", 
-      "split_type": "temporal", 
+      "label_type": "onehot", 
+      "split_type": "random", 
       "time_frame": 60, 
       "time_frame_vals": [
          60, 
@@ -26,16 +22,16 @@
          10
       ], 
       "topic_support": 50, 
-      "train_ratio": 0.5
+      "train_ratio": 0.5, 
+      "train_ratio_vals": [
+         0.5
+      ]
    }, 
    "description": "Pipeline for experimenting with Graph Convolutional Networks (GCN). ", 
    "id": "0", 
    "name": "GcnProject", 
    "notebooks": [
       {
-         "config": {
-            "label_type": "blended"
-         }, 
          "dependencies": [
             "GraphPreprocessor"
          ], 
@@ -43,7 +39,7 @@
          "kernel_type": "py3-env", 
          "name": "GcnNotebook", 
          "path": "ipython/GcnNotebook.ipynb", 
-         "pipeline_status": "on", 
+         "pipeline_status": "off", 
          "type": "Modeling"
       }, 
       {
@@ -51,7 +47,7 @@
          "kernel_type": "py3-env", 
          "name": "GraphPreprocessor", 
          "path": "ipython/GraphPreprocessor.ipynb", 
-         "pipeline_status": "on", 
+         "pipeline_status": "off", 
          "type": "Preprocessor"
       }, 
       {
@@ -63,6 +59,10 @@
          "type": "Parameters"
       }, 
       {
+         "config": {
+            "label_type": "blended", 
+            "split_type": "temporal"
+         }, 
          "dependencies": [
             "GcnNotebook"
          ], 
@@ -70,11 +70,21 @@
          "kernel_type": "py3-env", 
          "name": "GcnResultCollector", 
          "path": "ipython/GcnResultCollector.ipynb", 
-         "pipeline_status": "off", 
+         "pipeline_status": "on", 
          "type": "Collector"
       }
    ], 
    "reports": [
+      {
+         "date": "2017-05-16", 
+         "id": "15o_results_with_baseline_2017-05-16", 
+         "kernel_status": "active", 
+         "name": "15o results with baseline", 
+         "note": "I refactored the codebase. Baseline models and multiple labels were used in these experiments. Accuracies drop unexpectedly when top_k=4.", 
+         "save_for_remote": "disabled", 
+         "type": "remote", 
+         "user": "fberes"
+      }, 
       {
          "date": "2017-04-23", 
          "id": "15o_preproc_params_2017-04-23", 
