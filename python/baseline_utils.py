@@ -28,13 +28,13 @@ def random_pred(y_arr, unknown_enabled=False):
 
 ### Frequency-weighted random predictor ###
 
-def weighted_random_pred(label_bin_file_path,size):
+def weighted_random_pred(labels_arr,size):
     """Frequency weighted random predictor. Predict random labels from a finite set based on their frequencies in the provided binary file.."""
-    with open(label_bin_file_path, 'rb') as f:
-        if sys.version_info > (3, 0):
-            labels_arr = pkl.load(f, encoding='latin1')
-        else:
-            labels_arr = pkl.load(f)
+    #with open(label_bin_file_path, 'rb') as f:
+    #    if sys.version_info > (3, 0):
+    #        labels_arr = pkl.load(f, encoding='latin1')
+    #    else:
+    #        labels_arr = pkl.load(f)
     new_array = [tuple(row) for row in labels_arr]
     ordered_labels, w_ranges = get_weighted_ranges(new_array)
     rnd_vals = [ordered_labels[find_label_idx(w_ranges)] for i in range(size)]
@@ -69,15 +69,15 @@ def get_weighted_ranges(label_array):
 
 ### Baseline interface ###
 
-def baseline_predict(y_train, y_test, y_val, train_mask, test_mask, val_mask, bin_file_path=None):
-    """Get baseline random predictions. If 'bin_file_path' is used then the predictor will take into account the frequencies of the labels in the file."""
+def baseline_predict(y_train, y_test, y_val, train_mask, test_mask, val_mask, label_samples=None):
+    """Get baseline random predictions. If 'label_samples' is used then the predictor will take into account the frequencies of the labels in the file."""
     sess = tf.Session()
     acc_vector = []
     for t in [(y_train,train_mask),(y_val,val_mask),(y_test,test_mask)]:
-        if bin_file_path == None:
+        if label_samples == None:
             y_rnd = random_pred(t[0])
         else:
-            y_rnd = weighted_random_pred(bin_file_path, len(t[0]))
+            y_rnd = weighted_random_pred(label_samples, len(t[0]))
         acc = sess.run(masked_accuracy(y_rnd,t[0],t[1]))
         acc_vector.append(acc)
     return acc_vector

@@ -103,3 +103,4 @@ datawand_info.json
 pipelines/luigi.cfg
 *.tmp
 *.info
+reports/
