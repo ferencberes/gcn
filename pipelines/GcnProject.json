@@ -2,10 +2,10 @@
    "config_path": "pipelines/GcnProject.json", 
    "default_config": {
       "cut_ratio": 0.5, 
-      "dataset_id": "occupy", 
+      "dataset_id": "15o", 
       "experiment_dir": "/mnt/idms/fberes/network/gcn_project/", 
       "input_prefix": "/mnt/idms/temporalNodeRanking/data/filtered_timeline_data/tsv", 
-      "label_type": "binary", 
+      "label_type": "blended", 
       "split_type": "random", 
       "time_frame": 60, 
       "time_frame_vals": [
@@ -15,11 +15,7 @@
       ], 
       "top_k": 5, 
       "top_k_vals": [
-         2, 
-         3, 
-         4, 
-         5, 
-         10
+         5
       ], 
       "topic_support": 50, 
       "train_ratio": 0.5, 
@@ -43,11 +39,16 @@
          "type": "Modeling"
       }, 
       {
+         "config": {
+            "time_frame": 60, 
+            "top_k": 5, 
+            "train_ratio": 0.5
+         }, 
          "is_clone": "no", 
          "kernel_type": "py3-env", 
          "name": "GraphPreprocessor", 
          "path": "ipython/GraphPreprocessor.ipynb", 
-         "pipeline_status": "off", 
+         "pipeline_status": "on", 
          "type": "Preprocessor"
       }, 
       {
@@ -59,11 +60,6 @@
          "type": "Parameters"
       }, 
       {
-         "config": {
-            "dataset_id": "15o", 
-            "label_type": "blended", 
-            "split_type": "random"
-         }, 
          "dependencies": [
             "GcnNotebook"
          ], 
@@ -71,11 +67,41 @@
          "kernel_type": "py3-env", 
          "name": "GcnResultCollector", 
          "path": "ipython/GcnResultCollector.ipynb", 
-         "pipeline_status": "on", 
+         "pipeline_status": "off", 
          "type": "Collector"
       }
    ], 
    "reports": [
+      {
+         "date": "2017-05-31", 
+         "id": "top_k=10_preprocessors_2017-05-31", 
+         "kernel_status": "active", 
+         "name": "top_K=10 preprocessors", 
+         "note": "Preprocessor with whole graph. Formerly only the giant component was taken.", 
+         "save_for_remote": "disabled", 
+         "type": "remote", 
+         "user": "fberes"
+      }, 
+      {
+         "date": "2017-05-31", 
+         "id": "top_k=4_preprocessors_2017-05-31", 
+         "kernel_status": "active", 
+         "name": "top_k=4 preprocessors", 
+         "note": "Preprocessor with whole graph. Formerly only the giant component was taken.", 
+         "save_for_remote": "disabled", 
+         "type": "remote", 
+         "user": "fberes"
+      }, 
+      {
+         "date": "2017-05-24", 
+         "id": "samplling_observation_set_2017-05-24", 
+         "kernel_status": "active", 
+         "name": "samplling observation set", 
+         "note": "", 
+         "save_for_remote": "disabled", 
+         "type": "remote", 
+         "user": "fberes"
+      }, 
       {
          "date": "2017-05-22", 
          "id": "15o_and_occupy_2017-05-22", 
